@@ -1,1 +1,10 @@
-{"name":"はみがき90びょう","short_name":"はみがき","start_url":"./index.html","display":"standalone","orientation":"landscape","background_color":"#8feee4","theme_color":"#8feee4"}
+{
+  "name":"はみがきくん",
+  "short_name":"はみがきくん",
+  "start_url":"./index.html",
+  "display":"standalone",
+  "orientation":"landscape",
+  "background_color":"#8feee4",
+  "theme_color":"#8feee4",
+  "icons":[]
+}
