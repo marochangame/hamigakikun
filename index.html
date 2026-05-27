@@ -7,19 +7,30 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="app">
+
+<div class="bg">
+
   <div class="mouth">
     <div class="teeth top"></div>
     <div class="teeth bottom"></div>
 
-    <div class="germs">
-      <span>👾</span><span>👾</span><span>👾</span>
-    </div>
+    <div class="germ g1">👾</div>
+    <div class="germ g2">👾</div>
+    <div class="germ g3">👾</div>
+    <div class="germ g4">👾</div>
+
+    <div class="sparkles"></div>
 
     <div class="brush">🪥</div>
   </div>
 
   <button id="startBtn">スタート</button>
+
+  <div id="finish" class="finish hidden">
+    <h1>はみがきできた！</h1>
+    <button onclick="location.reload()">もういっかい</button>
+  </div>
+
 </div>
 
 <script src="app.js"></script>
