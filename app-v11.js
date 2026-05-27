@@ -57,10 +57,7 @@
   }
 
   startBtn.addEventListener('click', start);
-  startBtn.addEventListener('touchend', (e)=>{ e.preventDefault(); start(); }, {passive:false});
   againVisible.addEventListener('click', reset);
-  againVisible.addEventListener('touchend', (e)=>{ e.preventDefault(); reset(); }, {passive:false});
   song.addEventListener('ended', finish);
-  window.addEventListener('pagehide', () => { try { song.pause(); } catch(e){} });
   reset();
 })();
