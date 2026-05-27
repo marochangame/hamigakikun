@@ -5,54 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="theme-color" content="#9eeeff" />
-  <title>はみがきくん</title>
+  <meta name="theme-color" content="#8feee4" />
+  <title>はみがき90びょう</title>
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="style-v8.css?v=8singlebrush" />
+  <link rel="stylesheet" href="style-v9.css?v=9" />
 </head>
 <body>
-  <main id="app" class="app" aria-label="はみがきくん">
-    <img class="base-art" src="kawaii_ui.png" alt="かわいい歯みがきの絵" draggable="false" />
+  <main class="app" id="app">
+    <img src="kawaii_ui.jpg" class="base-art" alt="はみがき90びょう" draggable="false" />
 
-    <!-- 背景画像に元から入っている歯ブラシを隠すための、口の中になじませるカバー -->
-    <div class="brush-cover" aria-hidden="true">
-      <span class="cover-tooth t1">●</span><span class="cover-tooth t2">●</span><span class="cover-tooth t3">●</span>
+    <div class="clean-layer" id="cleanLayer" aria-hidden="true">
+      <div class="clean c1"><span>✦</span><span>✨</span><span>✧</span></div>
+      <div class="clean c2"><span>✨</span><span>✦</span><span>✧</span></div>
+      <div class="clean c3"><span>✦</span><span>✨</span><span>✧</span></div>
+      <div class="clean c4"><span>✨</span><span>✦</span><span>✧</span></div>
+      <div class="clean c5"><span>✦</span><span>✨</span><span>✧</span></div>
+      <div class="clean c6"><span>✨</span><span>✦</span><span>✧</span></div>
+      <div class="clean c7"><span>✦</span><span>✨</span><span>✧</span></div>
     </div>
 
-    <div class="soft-sparkles" aria-hidden="true"></div>
-
-    <div id="routeBrush" class="route-brush" aria-hidden="true">
-      <div class="brush-handle"></div>
-      <div class="brush-neck"></div>
-      <div class="brush-head"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-      <div class="foam"></div>
-    </div>
-
-    <div class="clean-germs" aria-hidden="true">
-      <span class="clean-germ cg1">🦠</span>
-      <span class="clean-germ cg2">🦠</span>
-      <span class="clean-germ cg3">🦠</span>
-      <span class="clean-germ cg4">🦠</span>
-      <span class="clean-germ cg5">🦠</span>
-      <span class="clean-germ cg6">🦠</span>
-    </div>
-
-    <div id="sparkles" class="sparkles" aria-hidden="true"></div>
-
-    <button id="startBtn" class="start-btn" type="button">スタート！</button>
-
-    <section id="done" class="done" aria-live="polite">
-      <div class="done-card">
-        <div class="done-star">⭐</div>
-        <h1>はみがき できた！</h1>
-        <p>おくち、ぴかぴか！</p>
-        <button id="againBtn" type="button">もういっかい</button>
+    <div class="finish" id="finish" aria-live="polite">
+      <div class="finish-card">
+        <div class="finish-star">⭐</div>
+        <div class="finish-main">はみがき できた！</div>
+        <div class="finish-sub">おくち、ぴかぴか！</div>
       </div>
-    </section>
+    </div>
+
+    <button class="start-hit" id="startBtn" aria-label="スタート"></button>
+    <button class="again-hit" id="againBtn" aria-label="もういっかい"></button>
 
     <audio id="song" preload="auto" src="hamigaki_song.m4a"></audio>
   </main>
   <div class="rotate">よこ向きにしてね</div>
-  <script src="app-v8.js?v=8singlebrush"></script>
+  <script src="app-v9.js?v=9"></script>
 </body>
 </html>
