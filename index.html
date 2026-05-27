@@ -3,66 +3,53 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
-  <meta name="theme-color" content="#8feee0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>はみがき90びょう</title>
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="style-v2.css?v=2" />
+  <link rel="stylesheet" href="kawaii-v3.css?v=3" />
 </head>
 <body>
+  <audio id="song" src="hamigaki_song.m4a" preload="auto"></audio>
   <main class="app" id="app">
     <header class="topbar">
-      <div class="titleBadge">はみがき<br><strong>90びょう</strong></div>
-      <div class="progressWrap" aria-label="進み具合">
-        <div class="progressFill" id="progressFill"></div>
-      </div>
-      <div class="timerBadge" id="timer">1:30</div>
+      <div class="titleBubble">はみがき<br><b>90びょう</b></div>
+      <div class="progressWrap"><div class="progress" id="progress"></div><span class="starRunner" id="starRunner">⭐</span></div>
+      <div class="timerBubble" id="timer">1:30</div>
     </header>
 
-    <section class="stage" id="stage">
-      <div class="bubble bubbleA"></div>
-      <div class="bubble bubbleB"></div>
-      <div class="bubble bubbleC"></div>
-      <div class="spark s1">✦</div>
-      <div class="spark s2">✧</div>
-      <div class="spark s3">✦</div>
+    <section class="stage">
+      <div class="fairy fairyPink" id="fairyA"><span class="wand">⭐</span></div>
+      <div class="fairy fairyBlue" id="fairyB"><span class="wand">⭐</span></div>
+      <div class="fairy fairyGreen" id="fairyC"><span class="wand">⭐</span></div>
+      <div class="fairy fairyYellow" id="fairyD"><span class="wand">⭐</span></div>
 
-      <div class="mouth" aria-label="大きく開いた口のイラスト">
-        <div class="lip lipTop"></div>
+      <div class="bubble b1"></div><div class="bubble b2"></div><div class="bubble b3"></div><div class="bubble b4"></div>
+      <div class="spark s1">✦</div><div class="spark s2">✧</div><div class="spark s3">✦</div>
+
+      <div class="mouth" id="mouth">
+        <div class="lip"></div>
         <div class="inside"></div>
         <div class="tongue"></div>
         <div class="uvula"></div>
         <div class="teeth topTeeth" id="topTeeth"></div>
         <div class="teeth bottomTeeth" id="bottomTeeth"></div>
-      </div>
-
-      <div class="foam" id="foam"></div>
-      <div class="brush" id="brush" aria-hidden="true">
-        <div class="handle"></div>
-        <div class="neck"></div>
-        <div class="head"><span></span><span></span><span></span><span></span></div>
-      </div>
-
-      <div class="speech" id="speech">シュッシュッシュ</div>
-      <div class="startPanel" id="startPanel">
-        <div class="startText">おくちを あーん</div>
-        <button class="bigStart" id="startBtn" type="button">スタート！</button>
-      </div>
-      <div class="donePanel hidden" id="donePanel">
-        <div class="doneStar">⭐</div>
-        <div class="doneTitle">はみがき できた！</div>
-        <div class="doneSub">おくち、ぴかぴか！</div>
-        <button class="againBtn" id="againBtn" type="button">もういっかい</button>
+        <div class="germs" id="germs"></div>
+        <div class="foam" id="foam"></div>
+        <div class="brush" id="brush"><div class="handle"></div><div class="head"><i></i><i></i><i></i><i></i><i></i></div></div>
+        <div class="speech" id="speech">シュッシュッシュ♪</div>
       </div>
     </section>
 
-    <nav class="controls" aria-label="操作">
-      <button id="pauseBtn" type="button" disabled>ちょっと<br>おやすみ</button>
-      <button id="resumeBtn" type="button" disabled>つづき</button>
-      <button id="resetBtn" type="button">リセット</button>
-    </nav>
-
-    <audio id="song" preload="auto" src="hamigaki_song.m4a"></audio>
+    <button class="startBtn" id="startBtn">スタート！</button>
+    <button class="pauseBtn hidden" id="pauseBtn">ちょっとおやすみ</button>
+    <button class="resetBtn hidden" id="resetBtn">もういっかい</button>
+    <section class="done hidden" id="done">
+      <div class="doneCard"><div class="doneStar">⭐</div><h1>はみがき できた！</h1><p>おくち、ぴかぴか！</p><button id="againBtn">もういっかい</button></div>
+    </section>
   </main>
-  <script src="app-v2.js?v=2"></script>
+  <div class="rotateHint">よこ向きにしてね</div>
+  <script src="kawaii-v3.js?v=3"></script>
 </body>
 </html>
