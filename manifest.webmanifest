@@ -1,10 +1,1 @@
-{
-  "name": "はみがき90びょう",
-  "short_name": "はみがき",
-  "start_url": "./index.html",
-  "display": "standalone",
-  "orientation": "landscape",
-  "background_color": "#7bdff2",
-  "theme_color": "#7bdff2",
-  "icons": []
-}
+{"name":"はみがき90びょう","short_name":"はみがき","start_url":"./","display":"standalone","background_color":"#8ee7f5","theme_color":"#8ee7f5","orientation":"landscape"}
