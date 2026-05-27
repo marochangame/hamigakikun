@@ -1,19 +1,8 @@
-はみがきくん v7 orbitbrush
+はみがきくん v8-singlebrush
 
-変更点:
-- 矢印・線なし
-- おやすみボタン削除
-- 右側の謎ボタン削除
-- タイマー・進行ゲージなし
-- 歯が見切れにくいように画像をcontain表示
-- 大きめ歯ブラシが一周して終了
-- バイ菌が順番に消える
-
-アップロードするファイル:
-index.html
-style-v7.css
-app-v7.js
-manifest.webmanifest
-kawaii_ui.png
-hamigaki_song.m4a
-README.txt
+修正内容：
+・歯ブラシを1本だけに見える構成へ修正
+・背景に元からある歯ブラシを口の中色のカバーで隠す
+・iPhone Safariでも動くように、歯ブラシ移動をCSSではなくJavaScript制御へ変更
+・おやすみ／リセット系の常時表示ボタンはなし
+・上の歯が見切れにくいように全体表示を維持

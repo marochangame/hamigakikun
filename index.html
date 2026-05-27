@@ -8,16 +8,23 @@
   <meta name="theme-color" content="#9eeeff" />
   <title>はみがきくん</title>
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="style-v7.css?v=7orbit" />
+  <link rel="stylesheet" href="style-v8.css?v=8singlebrush" />
 </head>
 <body>
   <main id="app" class="app" aria-label="はみがきくん">
     <img class="base-art" src="kawaii_ui.png" alt="かわいい歯みがきの絵" draggable="false" />
 
+    <!-- 背景画像に元から入っている歯ブラシを隠すための、口の中になじませるカバー -->
+    <div class="brush-cover" aria-hidden="true">
+      <span class="cover-tooth t1">●</span><span class="cover-tooth t2">●</span><span class="cover-tooth t3">●</span>
+    </div>
+
+    <div class="soft-sparkles" aria-hidden="true"></div>
+
     <div id="routeBrush" class="route-brush" aria-hidden="true">
       <div class="brush-handle"></div>
       <div class="brush-neck"></div>
-      <div class="brush-head"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="brush-head"><i></i><i></i><i></i><i></i><i></i><i></i></div>
       <div class="foam"></div>
     </div>
 
@@ -46,6 +53,6 @@
     <audio id="song" preload="auto" src="hamigaki_song.m4a"></audio>
   </main>
   <div class="rotate">よこ向きにしてね</div>
-  <script src="app-v7.js?v=7orbit"></script>
+  <script src="app-v8.js?v=8singlebrush"></script>
 </body>
 </html>
