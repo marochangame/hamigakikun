@@ -5,39 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="theme-color" content="#8feee4" />
+  <meta name="theme-color" content="#9eeeff" />
   <title>はみがきくん</title>
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="style-v6-light.css?v=6light" />
+  <link rel="stylesheet" href="style-v7.css?v=7orbit" />
 </head>
 <body>
   <main id="app" class="app" aria-label="はみがきくん">
-    <img class="base-art" src="kawaii_ui.jpg" alt="" draggable="false" />
+    <img class="base-art" src="kawaii_ui.png" alt="かわいい歯みがきの絵" draggable="false" />
 
-    <div id="movingBrush" class="moving-brush" aria-hidden="true">🪥</div>
-
-    <div class="germ-layer" aria-hidden="true">
-      <span class="germ g1">🦠</span>
-      <span class="germ g2">🦠</span>
-      <span class="germ g3">🦠</span>
-      <span class="germ g4">🦠</span>
-      <span class="germ g5">🦠</span>
-      <span class="germ g6">🦠</span>
-      <span class="germ g7">🦠</span>
+    <div id="routeBrush" class="route-brush" aria-hidden="true">
+      <div class="brush-handle"></div>
+      <div class="brush-neck"></div>
+      <div class="brush-head"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="foam"></div>
     </div>
 
-    <div class="fairy-layer" aria-hidden="true">
-      <span class="fairy f1">🧚‍♀️</span>
-      <span class="fairy f2">🧚</span>
-      <span class="fairy f3">🧚‍♂️</span>
-      <span class="fairy f4">🧚‍♀️</span>
+    <div class="clean-germs" aria-hidden="true">
+      <span class="clean-germ cg1">🦠</span>
+      <span class="clean-germ cg2">🦠</span>
+      <span class="clean-germ cg3">🦠</span>
+      <span class="clean-germ cg4">🦠</span>
+      <span class="clean-germ cg5">🦠</span>
+      <span class="clean-germ cg6">🦠</span>
     </div>
 
     <div id="sparkles" class="sparkles" aria-hidden="true"></div>
 
     <button id="startBtn" class="start-btn" type="button">スタート！</button>
-    <button id="pauseBtn" class="mini-btn pause-btn" type="button">おやすみ</button>
-    <button id="resetBtn" class="mini-btn reset-btn" type="button">↻</button>
 
     <section id="done" class="done" aria-live="polite">
       <div class="done-card">
@@ -51,6 +46,6 @@
     <audio id="song" preload="auto" src="hamigaki_song.m4a"></audio>
   </main>
   <div class="rotate">よこ向きにしてね</div>
-  <script src="app-v6-light.js?v=6light"></script>
+  <script src="app-v7.js?v=7orbit"></script>
 </body>
 </html>

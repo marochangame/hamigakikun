@@ -1,17 +1,19 @@
-はみがきくん v6-light
+はみがきくん v7 orbitbrush
 
-・上ゲージ／タイマー／被り文字を削除
-・大きな口と歯のイラストを主役にした全画面版
-・歯ブラシが口の中を一周したら終了
-・バイ菌が順番に消える
-・妖精が増える
-・iPhoneからGitHubへアップロードしやすい直置き構成
+変更点:
+- 矢印・線なし
+- おやすみボタン削除
+- 右側の謎ボタン削除
+- タイマー・進行ゲージなし
+- 歯が見切れにくいように画像をcontain表示
+- 大きめ歯ブラシが一周して終了
+- バイ菌が順番に消える
 
-GitHubにアップロードするもの：
+アップロードするファイル:
 index.html
-style-v6-light.css
-app-v6-light.js
+style-v7.css
+app-v7.js
 manifest.webmanifest
-README.txt
-kawaii_ui.jpg
+kawaii_ui.png
 hamigaki_song.m4a
+README.txt
