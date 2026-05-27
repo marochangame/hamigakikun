@@ -1,8 +1,7 @@
-
 body{
 margin:0;
 overflow:hidden;
-font-family:sans-serif;
+font-family:"Hiragino Maru Gothic ProN","Yu Gothic",system-ui,sans-serif;
 background:linear-gradient(135deg,#89e7ff,#ffd0e6);
 height:100vh;
 display:flex;
@@ -44,9 +43,7 @@ justify-content:space-between;
 .top{top:10px;}
 .bottom{bottom:10px;}
 
-.teeth::before{
-content:"";
-}
+.teeth::before{content:"";}
 
 .teeth{
 background:
@@ -131,6 +128,4 @@ border-radius:999px;
 background:#ffe45f;
 }
 
-.hidden{
-display:none;
-}
+.hidden{display:none;}
