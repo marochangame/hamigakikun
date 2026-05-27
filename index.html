@@ -2,63 +2,67 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#8ee7f5" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="はみがき" />
-  <title>はみがき90びょう v1.2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#8feee0" />
+  <title>はみがき90びょう</title>
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="style-v12.css?v=12" />
+  <link rel="stylesheet" href="style-v2.css?v=2" />
 </head>
 <body>
-  <main class="app" aria-label="はみがき90びょうアプリ">
+  <main class="app" id="app">
+    <header class="topbar">
+      <div class="titleBadge">はみがき<br><strong>90びょう</strong></div>
+      <div class="progressWrap" aria-label="進み具合">
+        <div class="progressFill" id="progressFill"></div>
+      </div>
+      <div class="timerBadge" id="timer">1:30</div>
+    </header>
+
     <section class="stage" id="stage">
-      <div class="topbar">
-        <div class="brand">はみがき 90びょう</div>
-        <div class="timer" id="timer">1:30</div>
+      <div class="bubble bubbleA"></div>
+      <div class="bubble bubbleB"></div>
+      <div class="bubble bubbleC"></div>
+      <div class="spark s1">✦</div>
+      <div class="spark s2">✧</div>
+      <div class="spark s3">✦</div>
+
+      <div class="mouth" aria-label="大きく開いた口のイラスト">
+        <div class="lip lipTop"></div>
+        <div class="inside"></div>
+        <div class="tongue"></div>
+        <div class="uvula"></div>
+        <div class="teeth topTeeth" id="topTeeth"></div>
+        <div class="teeth bottomTeeth" id="bottomTeeth"></div>
       </div>
-      <div class="progress-wrap" aria-label="進行状況"><div class="progress" id="progress"></div></div>
-      <div class="content">
-        <section class="visual-card" aria-label="アニメーション">
-          <div class="mouth" id="mouth">
-            <div class="tooth-row upper"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            <div class="sparkle" id="sparkle">✦</div>
-            <div class="brush" id="brush"><span class="bristles"></span><span class="handle"></span></div>
-            <div class="tooth-row lower"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          </div>
-          <div class="message" id="message">スタートをおしてね</div>
-        </section>
-        <section class="guide-card" aria-label="今みがくところ">
-          <div class="label">いまみがくところ</div>
-          <div class="area-name" id="areaName">じゅんび</div>
-          <div class="area-hint" id="areaHint">よこ向きで使ってね</div>
-          <div class="mini-map" aria-hidden="true">
-            <span class="zone" data-zone="upperOutside">うえ<br>そと</span>
-            <span class="zone" data-zone="lowerOutside">した<br>そと</span>
-            <span class="zone" data-zone="front">まえ</span>
-            <span class="zone" data-zone="upperInside">うえ<br>うら</span>
-            <span class="zone" data-zone="lowerInside">した<br>うら</span>
-            <span class="zone" data-zone="finish">しあげ</span>
-          </div>
-        </section>
+
+      <div class="foam" id="foam"></div>
+      <div class="brush" id="brush" aria-hidden="true">
+        <div class="handle"></div>
+        <div class="neck"></div>
+        <div class="head"><span></span><span></span><span></span><span></span></div>
       </div>
-      <div class="controls">
-        <button class="primary" id="startBtn" type="button">スタート</button>
-        <button id="pauseBtn" type="button" disabled>一時停止</button>
-        <button id="resetBtn" type="button">リセット</button>
+
+      <div class="speech" id="speech">シュッシュッシュ</div>
+      <div class="startPanel" id="startPanel">
+        <div class="startText">おくちを あーん</div>
+        <button class="bigStart" id="startBtn" type="button">スタート！</button>
       </div>
-    </section>
-    <section class="done" id="done" aria-label="完了画面">
-      <div class="done-card">
-        <div class="medal">🌟</div>
-        <h1>はみがき できた！</h1>
-        <p>おくち、ぴかぴか！</p>
-        <button class="primary big-again" id="againBtn" type="button">もういっかい</button>
+      <div class="donePanel hidden" id="donePanel">
+        <div class="doneStar">⭐</div>
+        <div class="doneTitle">はみがき できた！</div>
+        <div class="doneSub">おくち、ぴかぴか！</div>
+        <button class="againBtn" id="againBtn" type="button">もういっかい</button>
       </div>
     </section>
+
+    <nav class="controls" aria-label="操作">
+      <button id="pauseBtn" type="button" disabled>ちょっと<br>おやすみ</button>
+      <button id="resumeBtn" type="button" disabled>つづき</button>
+      <button id="resetBtn" type="button">リセット</button>
+    </nav>
+
     <audio id="song" preload="auto" src="hamigaki_song.m4a"></audio>
   </main>
-  <script src="app-v12.js?v=12"></script>
+  <script src="app-v2.js?v=2"></script>
 </body>
 </html>
