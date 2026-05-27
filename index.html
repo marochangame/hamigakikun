@@ -4,52 +4,47 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#8feee4" />
   <title>はみがき90びょう</title>
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="kawaii-v3.css?v=3" />
+  <link rel="stylesheet" href="style-v4.css?v=4" />
 </head>
 <body>
-  <audio id="song" src="hamigaki_song.m4a" preload="auto"></audio>
   <main class="app" id="app">
-    <header class="topbar">
-      <div class="titleBubble">はみがき<br><b>90びょう</b></div>
-      <div class="progressWrap"><div class="progress" id="progress"></div><span class="starRunner" id="starRunner">⭐</span></div>
-      <div class="timerBubble" id="timer">1:30</div>
-    </header>
+    <img src="kawaii_ui.jpg" class="base-art" alt="はみがき90びょう" draggable="false" />
 
-    <section class="stage">
-      <div class="fairy fairyPink" id="fairyA"><span class="wand">⭐</span></div>
-      <div class="fairy fairyBlue" id="fairyB"><span class="wand">⭐</span></div>
-      <div class="fairy fairyGreen" id="fairyC"><span class="wand">⭐</span></div>
-      <div class="fairy fairyYellow" id="fairyD"><span class="wand">⭐</span></div>
+    <div class="progress-shell" aria-hidden="true"><div id="progress" class="progress-fill"></div><div id="star" class="star">⭐</div></div>
+    <div class="timer-pill" id="timer">1:30</div>
 
-      <div class="bubble b1"></div><div class="bubble b2"></div><div class="bubble b3"></div><div class="bubble b4"></div>
-      <div class="spark s1">✦</div><div class="spark s2">✧</div><div class="spark s3">✦</div>
+    <div class="brush" id="brush" aria-hidden="true">🪥</div>
+    <div class="foam" id="foam" aria-hidden="true">🫧</div>
+    <div class="sparkles" id="sparkles" aria-hidden="true"></div>
 
-      <div class="mouth" id="mouth">
-        <div class="lip"></div>
-        <div class="inside"></div>
-        <div class="tongue"></div>
-        <div class="uvula"></div>
-        <div class="teeth topTeeth" id="topTeeth"></div>
-        <div class="teeth bottomTeeth" id="bottomTeeth"></div>
-        <div class="germs" id="germs"></div>
-        <div class="foam" id="foam"></div>
-        <div class="brush" id="brush"><div class="handle"></div><div class="head"><i></i><i></i><i></i><i></i><i></i></div></div>
-        <div class="speech" id="speech">シュッシュッシュ♪</div>
+    <div class="germs" aria-hidden="true">
+      <span class="germ g1">🦠</span><span class="germ g2">🦠</span><span class="germ g3">🦠</span>
+      <span class="germ g4">🦠</span><span class="germ g5">🦠</span><span class="germ g6">🦠</span>
+    </div>
+    <div class="fairies" aria-hidden="true">
+      <span class="fairy f1">🧚‍♀️</span><span class="fairy f2">🧚</span><span class="fairy f3">🧚‍♂️</span><span class="fairy f4">🧚‍♀️</span>
+    </div>
+
+    <button class="hit start-hit" id="startBtn" aria-label="スタート"></button>
+    <button class="pause-btn" id="pauseBtn">ちょっとおやすみ</button>
+    <button class="retry-btn" id="retryBtn">もういっかい</button>
+
+    <section class="done" id="done" aria-live="polite">
+      <div class="done-card">
+        <div class="done-star">⭐</div>
+        <h1>はみがき できた！</h1>
+        <p>おくち、ぴかぴか！</p>
+        <button id="againBtn">もういっかい</button>
       </div>
     </section>
 
-    <button class="startBtn" id="startBtn">スタート！</button>
-    <button class="pauseBtn hidden" id="pauseBtn">ちょっとおやすみ</button>
-    <button class="resetBtn hidden" id="resetBtn">もういっかい</button>
-    <section class="done hidden" id="done">
-      <div class="doneCard"><div class="doneStar">⭐</div><h1>はみがき できた！</h1><p>おくち、ぴかぴか！</p><button id="againBtn">もういっかい</button></div>
-    </section>
+    <audio id="song" preload="auto" src="hamigaki_song.m4a"></audio>
   </main>
-  <div class="rotateHint">よこ向きにしてね</div>
-  <script src="kawaii-v3.js?v=3"></script>
+  <div class="rotate">よこ向きにしてね</div>
+  <script src="app-v4.js?v=4"></script>
 </body>
 </html>
