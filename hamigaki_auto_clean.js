@@ -1,31 +1,23 @@
-// 心地よさ重視の自動バイ菌消し。既存 app-v11.js は変更しない。
+// 自動バイ菌消し：途中変化なし。指定タイミングでスパッと消す。
 (() => {
   const song = document.getElementById('song');
-  const covers = Array.from(document.querySelectorAll('.germ-cover'));
-  if (!song || covers.length === 0) return;
+  const germs = Array.from(document.querySelectorAll('.germ-cover'));
+  if (!song || germs.length === 0) return;
 
   let timers = [];
-
-  const clearTimers = () => {
-    timers.forEach(t => clearTimeout(t));
-    timers = [];
-  };
-
+  const clearTimers = () => { timers.forEach(t => clearTimeout(t)); timers = []; };
   const resetGerms = () => {
     clearTimers();
-    covers.forEach(c => c.classList.remove('is-cleaned'));
+    germs.forEach(g => g.classList.remove('is-cleaned'));
   };
 
   const startAutoClean = () => {
     resetGerms();
     document.body.classList.add('is-brushing');
-
-    // 歯みがき音声を見ながら、急がず気持ちよく1匹ずつ減るテンポ。
-    // 5匹を約70秒で消して、最後は余韻を残す。
-    const schedule = [4500, 18500, 32500, 48500, 66500];
+    const schedule = [5000, 19000, 33000, 49000, 66000];
     schedule.forEach((ms, index) => {
       timers.push(setTimeout(() => {
-        covers[index]?.classList.add('is-cleaned');
+        germs[index]?.classList.add('is-cleaned');
       }, ms));
     });
   };
@@ -37,7 +29,5 @@
 
   song.addEventListener('play', startAutoClean);
   song.addEventListener('ended', stopMotionOnly);
-  song.addEventListener('pause', () => {
-    if (!song.ended) stopMotionOnly();
-  });
+  song.addEventListener('pause', () => { if (!song.ended) stopMotionOnly(); });
 })();

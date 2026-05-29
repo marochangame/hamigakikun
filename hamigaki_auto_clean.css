@@ -1,57 +1,35 @@
-/* スパッと消える版。既存 style-v11.css / app-v11.js は変更しない */
+/* バイ菌を「存在→即消滅」にする版。既存 style-v11.css / app-v11.js は変更しない */
 .stage{position:relative;}
 .clean-layer,.brush-motion{position:absolute;inset:0;pointer-events:none;}
 .clean-layer{z-index:3;}
 .brush-motion{z-index:4;}
 .apple-hit{z-index:10;}
 
-/* バイ菌はじわじわ出さず、指定タイミングで即座に見えなくする */
+/* ベース画像はバイ菌なし。バイ菌はこのPNGで上に置き、消える時は一瞬で非表示。 */
 .germ-cover{
   position:absolute;
-  aspect-ratio:1/1;
-  transform:translate(-50%,-50%) scale(1);
-  opacity:0;
+  transform:translate(-50%,-50%);
   background-repeat:no-repeat;
   background-position:center;
   background-size:100% 100%;
-  filter:blur(.08px);
-  will-change:opacity;
+  opacity:1;
+  visibility:visible;
+  will-change:visibility;
+}
+.germ-cover.is-cleaned{
+  opacity:0;
+  visibility:hidden;
 }
 .germ-cover span{display:none;}
-.germ-cover.is-cleaned{
-  opacity:1;
-  animation:germSnapHide .16s ease-out both;
-}
-.germ-cover.is-cleaned::after{
-  content:"";
-  position:absolute;
-  left:50%;top:50%;
-  width:42%;height:42%;
-  border-radius:999px;
-  transform:translate(-50%,-50%) scale(.65);
-  background:radial-gradient(circle, rgba(255,255,255,.82) 0%, rgba(255,255,255,.34) 38%, rgba(255,255,255,0) 72%);
-  opacity:0;
-  animation:snapTinyFlash .22s ease-out forwards;
-}
 
-.g1{left:39.5%;top:37.5%;width:6.2%;background-image:url("patch_g1.png?v=snap1");}
-.g2{left:51.5%;top:50.0%;width:5.8%;background-image:url("patch_g2.png?v=snap1");}
-.g3{left:58.0%;top:36.5%;width:6.0%;background-image:url("patch_g3.png?v=snap1");}
-.g4{left:66.7%;top:42.0%;width:6.0%;background-image:url("patch_g4.png?v=snap1");}
-.g5{left:33.5%;top:47.0%;width:5.2%;background-image:url("patch_g5.png?v=snap1");}
+.g1{left:37.44%;top:36.88%;width:8.37%;aspect-ratio:1/1;background-image:url("patch_g1.png?v=pop1");}
+.g2{left:44.68%;top:47.29%;width:7.84%;aspect-ratio:1/1;background-image:url("patch_g2.png?v=pop1");}
+.g3{left:57.36%;top:41.45%;width:8.67%;aspect-ratio:1/1;background-image:url("patch_g3.png?v=pop1");}
+.g4{left:66.39%;top:46.23%;width:7.17%;aspect-ratio:1/1;background-image:url("patch_g4.png?v=pop1");}
+.g5{left:27.39%;top:44.85%;width:7.17%;aspect-ratio:1/1;background-image:url("patch_g5.png?v=pop1");}
 
-@keyframes germSnapHide{
-  0%{opacity:0;transform:translate(-50%,-50%) scale(.98);}
-  100%{opacity:1;transform:translate(-50%,-50%) scale(1);}
-}
-@keyframes snapTinyFlash{
-  0%{opacity:0;transform:translate(-50%,-50%) scale(.45);}
-  35%{opacity:.5;transform:translate(-50%,-50%) scale(1.02);}
-  100%{opacity:0;transform:translate(-50%,-50%) scale(1.28);}
-}
-
-/* 歯ブラシ本体は動かさない。動いてる風は薄いリズム線だけ */
-.brush-motion{opacity:0;transition:opacity .2s ease;}
+/* 歯ブラシ本体は動かさない。見た目は細いシャカ線だけ */
+.brush-motion{opacity:0;transition:opacity .12s ease;}
 body.is-brushing .brush-motion{opacity:1;}
 .brush-line{
   position:absolute;
@@ -59,8 +37,8 @@ body.is-brushing .brush-motion{opacity:1;}
   width:3.2%;
   height:.42%;
   border-radius:999px;
-  background:rgba(255,255,255,.36);
-  box-shadow:0 0 3px rgba(255,255,255,.22);
+  background:rgba(255,255,255,.34);
+  box-shadow:0 0 3px rgba(255,255,255,.20);
   transform-origin:left center;
   animation:brushLineCalm 1.25s ease-in-out infinite;
 }
@@ -69,5 +47,5 @@ body.is-brushing .brush-motion{opacity:1;}
 .bl3{top:50.3%;left:71.5%;transform:rotate(8deg);animation-delay:.42s;}
 @keyframes brushLineCalm{
   0%,100%{opacity:.10;translate:0 0;scale:.72 1;}
-  50%{opacity:.42;translate:-.24% 0;scale:1 1;}
+  50%{opacity:.38;translate:-.24% 0;scale:1 1;}
 }
