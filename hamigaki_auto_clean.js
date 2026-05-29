@@ -1,4 +1,4 @@
-// 自動バイ菌消し：見た目はそのまま。タイミングだけ 20/40/60/80 秒に調整。
+// 自動バイ菌消し：モヤモヤ後に妖精演出追加。タイミングだけ 20/40/60/80 秒に調整。
 (() => {
   const song = document.getElementById('song');
   const patches = Array.from(document.querySelectorAll('.clean-patch'));

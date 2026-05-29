@@ -25,24 +25,51 @@
 .g4{left:66.39%;top:46.23%;width:10.5%;aspect-ratio:1.553/1;background-image:url("patch_g4.png?v=fullsnap1");}
 .g5{left:27.39%;top:44.85%;width:8.5%;aspect-ratio:1.374/1;background-image:url("patch_g5.png?v=fullsnap1");}
 
-/* 歯ブラシ本体は動かさない。薄いシャカ線のみ。 */
-.brush-motion{opacity:0;transition:opacity .12s ease;}
+/* カッコ線は削除。代わりに歯ブラシ横にふわふわ妖精エフェクト */
+.brush-motion{opacity:0;transition:opacity .2s ease;}
 body.is-brushing .brush-motion{opacity:1;}
+
 .brush-line{
   position:absolute;
-  left:72.4%;
-  width:3.2%;
-  height:.42%;
-  border-radius:999px;
-  background:rgba(255,255,255,.30);
-  box-shadow:0 0 3px rgba(255,255,255,.16);
-  transform-origin:left center;
-  animation:brushLineCalm 1.25s ease-in-out infinite;
+  font-size:clamp(16px,2vw,28px);
+  filter:drop-shadow(0 0 8px rgba(255,255,255,.9));
+  animation:floatingFairy 2.2s ease-in-out infinite;
 }
-.bl1{top:43.7%;transform:rotate(-8deg);animation-delay:0s;}
-.bl2{top:47.0%;left:71.9%;transform:rotate(0deg);animation-delay:.21s;}
-.bl3{top:50.3%;left:71.5%;transform:rotate(8deg);animation-delay:.42s;}
-@keyframes brushLineCalm{
-  0%,100%{opacity:.10;translate:0 0;scale:.72 1;}
-  50%{opacity:.34;translate:-.24% 0;scale:1 1;}
+
+.brush-line::before{
+  content:"✨";
+}
+
+.bl1{left:73.2%;top:42.8%;animation-delay:0s;}
+.bl2{left:71.6%;top:47.2%;animation-delay:.6s;}
+.bl3{left:73.8%;top:51%;animation-delay:1.2s;}
+
+@keyframes floatingFairy{
+  0%,100%{transform:translateY(0) scale(.9) rotate(-8deg);opacity:.45;}
+  50%{transform:translateY(-10px) scale(1.15) rotate(8deg);opacity:1;}
+}
+
+.clean-patch.is-cleaned{
+  animation:fairyAppear .9s ease forwards;
+}
+
+.clean-patch.is-cleaned::after{
+  content:"🧚";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  font-size:clamp(16px,2vw,30px);
+  filter:drop-shadow(0 0 6px rgba(255,255,255,.9));
+  animation:tinyFairyFloat 2.8s ease-in-out infinite;
+}
+
+@keyframes fairyAppear{
+  0%{opacity:0;scale:.7;}
+  100%{opacity:1;scale:1;}
+}
+
+@keyframes tinyFairyFloat{
+  0%,100%{transform:translate(-50%,-50%) translateY(0);}
+  50%{transform:translate(-50%,-50%) translateY(-8px);}
 }
