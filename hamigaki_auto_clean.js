@@ -1,23 +1,23 @@
-// 自動バイ菌消し：途中変化なし。指定タイミングでスパッと消す。
+// 自動バイ菌消し：20秒後に1匹目。その後は同じ間隔で、半端に残さず全部隠す。
 (() => {
   const song = document.getElementById('song');
-  const germs = Array.from(document.querySelectorAll('.germ-cover'));
-  if (!song || germs.length === 0) return;
+  const patches = Array.from(document.querySelectorAll('.clean-patch'));
+  if (!song || patches.length === 0) return;
 
   let timers = [];
   const clearTimers = () => { timers.forEach(t => clearTimeout(t)); timers = []; };
-  const resetGerms = () => {
+  const resetClean = () => {
     clearTimers();
-    germs.forEach(g => g.classList.remove('is-cleaned'));
+    patches.forEach(p => p.classList.remove('is-cleaned'));
   };
 
   const startAutoClean = () => {
-    resetGerms();
+    resetClean();
     document.body.classList.add('is-brushing');
-    const schedule = [5000, 19000, 33000, 49000, 66000];
+    const schedule = [20000, 32000, 44000, 56000, 68000];
     schedule.forEach((ms, index) => {
       timers.push(setTimeout(() => {
-        germs[index]?.classList.add('is-cleaned');
+        patches[index]?.classList.add('is-cleaned');
       }, ms));
     });
   };
