@@ -1,75 +1,94 @@
-/* バイ菌を「スパッと全部消す」版。style-v11.css / app-v11.js は変更しない */
+/* 2026-05-29 sparkle clean update
+   目的：バイ菌が消えた後に黒いモヤモヤを残さず、キラキラした仕上がりにする。
+   既存の画角・音声・リンゴボタンは変更しない。
+*/
 .stage{position:relative;}
 .clean-layer,.brush-motion{position:absolute;inset:0;pointer-events:none;}
 .clean-layer{z-index:3;}
 .brush-motion{z-index:4;}
 .apple-hit{z-index:10;}
 
-/* 消える前は何も重ねない。時間が来たら、バイ菌全体を隠すクリーンパッチを一瞬で表示する。 */
+/* 消える前は非表示。時間が来たら、バイ菌と黒いモヤをふんわり完全カバーする。 */
 .clean-patch{
   position:absolute;
-  transform:translate(-50%,-50%);
-  background-repeat:no-repeat;
-  background-position:center;
-  background-size:100% 100%;
+  transform:translate(-50%,-50%) scale(.84);
   opacity:0;
   visibility:hidden;
+  border-radius:50%;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(255,250,255,.96) 0 18%, rgba(255,194,222,.94) 38%, rgba(255,142,194,.66) 62%, rgba(255,142,194,0) 100%);
+  box-shadow:
+    0 0 1.2vmin rgba(255,255,255,.82),
+    0 0 2.4vmin rgba(255,166,216,.42),
+    inset 0 0 1.4vmin rgba(255,255,255,.70);
+  filter:saturate(1.08);
 }
-.clean-patch.is-cleaned{
-  opacity:1;
-  visibility:visible;
-}
-.g1{left:37.44%;top:36.88%;width:11.5%;aspect-ratio:1.328/1;background-image:url("patch_g1.png?v=fullsnap1");}
-.g2{left:44.68%;top:47.29%;width:11.2%;aspect-ratio:1.533/1;background-image:url("patch_g2.png?v=fullsnap1");}
-.g3{left:57.36%;top:41.45%;width:12.0%;aspect-ratio:1.519/1;background-image:url("patch_g3.png?v=fullsnap1");}
-.g4{left:66.39%;top:46.23%;width:10.5%;aspect-ratio:1.553/1;background-image:url("patch_g4.png?v=fullsnap1");}
-.g5{left:27.39%;top:44.85%;width:8.5%;aspect-ratio:1.374/1;background-image:url("patch_g5.png?v=fullsnap1");}
-
-/* カッコ線は削除。代わりに歯ブラシ横にふわふわ妖精エフェクト */
-.brush-motion{opacity:0;transition:opacity .2s ease;}
-body.is-brushing .brush-motion{opacity:1;}
-
-.brush-line{
+.clean-patch::before{
+  content:"";
   position:absolute;
-  font-size:clamp(16px,2vw,28px);
-  filter:drop-shadow(0 0 8px rgba(255,255,255,.9));
-  animation:floatingFairy 2.2s ease-in-out infinite;
+  inset:-18%;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 26% 32%, rgba(255,255,255,.98) 0 4%, rgba(255,255,255,0) 5.5%),
+    radial-gradient(circle at 66% 24%, rgba(255,250,168,.95) 0 3.5%, rgba(255,250,168,0) 5%),
+    radial-gradient(circle at 76% 64%, rgba(255,255,255,.96) 0 4.5%, rgba(255,255,255,0) 6%),
+    radial-gradient(circle at 38% 72%, rgba(178,255,247,.78) 0 3.4%, rgba(178,255,247,0) 5%),
+    radial-gradient(ellipse at center, rgba(255,255,255,.26) 0 34%, rgba(255,255,255,0) 70%);
+  opacity:0;
 }
-
-.brush-line::before{
+.clean-patch::after{
   content:"✨";
-}
-
-.bl1{left:73.2%;top:42.8%;animation-delay:0s;}
-.bl2{left:71.6%;top:47.2%;animation-delay:.6s;}
-.bl3{left:73.8%;top:51%;animation-delay:1.2s;}
-
-@keyframes floatingFairy{
-  0%,100%{transform:translateY(0) scale(.9) rotate(-8deg);opacity:.45;}
-  50%{transform:translateY(-10px) scale(1.15) rotate(8deg);opacity:1;}
-}
-
-.clean-patch.is-cleaned{
-  animation:fairyAppear .9s ease forwards;
-}
-
-.clean-patch.is-cleaned::after{
-  content:"🧚";
   position:absolute;
   left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  font-size:clamp(16px,2vw,30px);
-  filter:drop-shadow(0 0 6px rgba(255,255,255,.9));
-  animation:tinyFairyFloat 2.8s ease-in-out infinite;
+  top:48%;
+  transform:translate(-50%,-50%) scale(.3);
+  font-size:clamp(18px,3.6vmin,46px);
+  color:#fff7a6;
+  text-shadow:0 0 .45vmin #fff,0 0 1.3vmin #ff8ac8,0 0 1.8vmin #8ffff1;
+  opacity:0;
 }
-
-@keyframes fairyAppear{
-  0%{opacity:0;scale:.7;}
-  100%{opacity:1;scale:1;}
+.clean-patch.is-cleaned{
+  visibility:visible;
+  animation:cleanCoverIn .55s ease-out forwards, cleanBreath 2.2s ease-in-out .55s infinite;
 }
+.clean-patch.is-cleaned::before{animation:cleanDust .9s ease-out .08s forwards, twinkleDust 1.55s ease-in-out 1s infinite;}
+.clean-patch.is-cleaned::after{animation:cleanStarPop .95s ease-out .12s forwards, cleanStarTwinkle 1.4s ease-in-out 1.05s infinite;}
 
-@keyframes tinyFairyFloat{
-  0%,100%{transform:translate(-50%,-50%) translateY(0);}
-  50%{transform:translate(-50%,-50%) translateY(-8px);}
+/* 各バイ菌より少し大きめにして、黒い残りを確実に隠す */
+.g1{left:37.44%;top:36.88%;width:14.2%;aspect-ratio:1.30/1;}
+.g2{left:44.68%;top:47.29%;width:13.8%;aspect-ratio:1.42/1;}
+.g3{left:57.36%;top:41.45%;width:14.8%;aspect-ratio:1.42/1;}
+.g4{left:66.39%;top:46.23%;width:13.2%;aspect-ratio:1.45/1;}
+.g5{left:27.39%;top:44.85%;width:10.8%;aspect-ratio:1.25/1;}
+
+@keyframes cleanCoverIn{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.50);filter:blur(.25vmin) saturate(1.1);}
+  58%{opacity:.98;transform:translate(-50%,-50%) scale(1.08);filter:blur(.04vmin) saturate(1.15);}
+  100%{opacity:.94;transform:translate(-50%,-50%) scale(1);filter:blur(0) saturate(1.08);}
+}
+@keyframes cleanBreath{0%,100%{opacity:.88}50%{opacity:.98}}
+@keyframes cleanDust{0%{opacity:0;transform:scale(.45) rotate(-10deg)}70%{opacity:1;transform:scale(1.12) rotate(7deg)}100%{opacity:.86;transform:scale(1) rotate(0)}}
+@keyframes twinkleDust{0%,100%{opacity:.52}50%{opacity:1}}
+@keyframes cleanStarPop{0%{opacity:0;transform:translate(-50%,-50%) scale(.25) rotate(-16deg)}65%{opacity:1;transform:translate(-50%,-62%) scale(1.16) rotate(8deg)}100%{opacity:.88;transform:translate(-50%,-56%) scale(.86) rotate(0)}}
+@keyframes cleanStarTwinkle{0%,100%{opacity:.48;filter:brightness(1)}50%{opacity:1;filter:brightness(1.35)}}
+
+/* 歯ブラシ横のカッコ線は削除。代わりに小さいキラキラだけをふわっと揺らす。 */
+.brush-motion{opacity:0;transition:opacity .16s ease;}
+body.is-brushing .brush-motion{opacity:1;}
+.brush-line{
+  position:absolute;
+  width:1.05%;
+  aspect-ratio:1/1;
+  border-radius:50%;
+  background:radial-gradient(circle,#fff 0 24%,#fff7a6 25% 42%,rgba(255,247,166,0) 66%);
+  box-shadow:0 0 .8vmin rgba(255,255,255,.95),0 0 1.5vmin rgba(255,226,116,.55);
+  animation:brushSparkleFloat 1.25s ease-in-out infinite;
+}
+.bl1{left:69.6%;top:43.7%;animation-delay:0s;}
+.bl2{left:72.0%;top:46.0%;animation-delay:.22s;}
+.bl3{left:70.8%;top:49.5%;animation-delay:.44s;}
+@keyframes brushSparkleFloat{
+  0%,100%{opacity:.22;transform:translateY(.12vmin) scale(.62);}
+  50%{opacity:.92;transform:translateY(-.34vmin) scale(1.05);}
 }
