@@ -1,23 +1,42 @@
-// 自動バイ菌消し：20秒後に1匹目。その後は同じ間隔で、半端に残さず全部隠す。
+// 自動バイ菌消し：見た目はそのまま。タイミングだけ 20/40/60/80 秒に調整。
 (() => {
   const song = document.getElementById('song');
   const patches = Array.from(document.querySelectorAll('.clean-patch'));
   if (!song || patches.length === 0) return;
 
   let timers = [];
-  const clearTimers = () => { timers.forEach(t => clearTimeout(t)); timers = []; };
+  const clearTimers = () => {
+    timers.forEach(t => clearTimeout(t));
+    timers = [];
+  };
+
   const resetClean = () => {
     clearTimers();
     patches.forEach(p => p.classList.remove('is-cleaned'));
   };
 
+  const cleanPatch = (index) => {
+    const patch = patches[index];
+    if (!patch) return;
+    patch.classList.add('is-cleaned');
+  };
+
   const startAutoClean = () => {
     resetClean();
     document.body.classList.add('is-brushing');
-    const schedule = [20000, 32000, 44000, 56000, 68000];
-    schedule.forEach((ms, index) => {
+
+    // 4匹想定：20秒、40秒、60秒、80秒。
+    // g5 は左奥の補助パッチなので、1匹目と同時に出して半端残りを防ぐ。
+    const schedule = [
+      { ms: 20000, indexes: [0, 4] },
+      { ms: 40000, indexes: [1] },
+      { ms: 60000, indexes: [2] },
+      { ms: 80000, indexes: [3] }
+    ];
+
+    schedule.forEach(({ ms, indexes }) => {
       timers.push(setTimeout(() => {
-        patches[index]?.classList.add('is-cleaned');
+        indexes.forEach(cleanPatch);
       }, ms));
     });
   };
@@ -29,5 +48,7 @@
 
   song.addEventListener('play', startAutoClean);
   song.addEventListener('ended', stopMotionOnly);
-  song.addEventListener('pause', () => { if (!song.ended) stopMotionOnly(); });
+  song.addEventListener('pause', () => {
+    if (!song.ended) stopMotionOnly();
+  });
 })();
