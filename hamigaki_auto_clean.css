@@ -1,90 +1,73 @@
-/* 追加演出だけ。既存の style-v11.css は変更しない */
+/* 心地よさ重視の最小演出。既存 style-v11.css / app-v11.js は変更しない */
 .stage{position:relative;}
-.clean-layer,.brush-motion{position:absolute;inset:0;pointer-events:none;z-index:3;}
-.sparkle-layer{z-index:4;pointer-events:none;}
+.clean-layer,.brush-motion{position:absolute;inset:0;pointer-events:none;}
+.clean-layer{z-index:3;}
+.brush-motion{z-index:4;}
 .apple-hit{z-index:10;}
 
-/* バイ菌を「シュッ・キラッ」と消すためのカバー。最初は完全に非表示 */
+/* バイ菌を「隠す」だけ。派手な泡・大きい光・二重見えは出さない */
 .germ-cover{
   position:absolute;
-  width:8.2%;
   aspect-ratio:1/1;
-  border-radius:50%;
-  transform:translate(-50%,-50%) scale(.35);
+  transform:translate(-50%,-50%) scale(.96);
   opacity:0;
-  background:radial-gradient(circle at 42% 38%, rgba(255,255,255,.98) 0 24%, rgba(255,245,250,.96) 42%, rgba(255,196,218,.82) 70%, rgba(255,255,255,0) 73%);
-  filter:drop-shadow(0 0 10px rgba(255,255,255,.9));
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:100% 100%;
+  filter:blur(.1px);
+  will-change:opacity,transform;
 }
-.germ-cover span{
+.germ-cover span{display:none;}
+.germ-cover.is-cleaned{
+  animation:germCleanComfort .82s cubic-bezier(.22,.72,.22,1) forwards;
+}
+.germ-cover.is-cleaned::after{
+  content:"";
   position:absolute;
   left:50%;top:50%;
-  transform:translate(-50%,-50%);
-  font-size:clamp(18px,3.2vw,44px);
+  width:58%;height:58%;
+  border-radius:999px;
+  transform:translate(-50%,-50%) scale(.72);
+  background:radial-gradient(circle, rgba(255,255,255,.72) 0%, rgba(255,255,255,.28) 38%, rgba(255,255,255,0) 72%);
   opacity:0;
-}
-.germ-cover.is-cleaned{
-  animation:germCleanPop .62s ease-out forwards;
-}
-.germ-cover.is-cleaned span{
-  animation:germSpark .62s ease-out forwards;
+  animation:softCleanGlow .68s ease-out forwards;
 }
 
-/* 採用画像上のバイ菌位置に合わせた座標 */
-.g1{left:39.5%;top:37.5%;}
-.g2{left:51.5%;top:50.0%;}
-.g3{left:58.0%;top:36.5%;}
-.g4{left:66.7%;top:42.0%;}
-.g5{left:43.8%;top:58.0%;}
-.g6{left:33.5%;top:47.0%;}
+.g1{left:39.5%;top:37.5%;width:6.2%;background-image:url("patch_g1.png?v=comfort1");}
+.g2{left:51.5%;top:50.0%;width:5.8%;background-image:url("patch_g2.png?v=comfort1");}
+.g3{left:58.0%;top:36.5%;width:6.0%;background-image:url("patch_g3.png?v=comfort1");}
+.g4{left:66.7%;top:42.0%;width:6.0%;background-image:url("patch_g4.png?v=comfort1");}
+.g5{left:33.5%;top:47.0%;width:5.2%;background-image:url("patch_g5.png?v=comfort1");}
 
-@keyframes germCleanPop{
-  0%{opacity:0;transform:translate(-50%,-50%) scale(.35) rotate(-10deg);}
-  42%{opacity:1;transform:translate(-50%,-50%) scale(1.16) rotate(4deg);}
-  100%{opacity:.96;transform:translate(-50%,-50%) scale(1) rotate(0deg);}
+@keyframes germCleanComfort{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.92);}
+  42%{opacity:.88;transform:translate(-50%,-50%) scale(1.01);}
+  100%{opacity:.92;transform:translate(-50%,-50%) scale(1);}
 }
-@keyframes germSpark{
-  0%{opacity:0;transform:translate(-50%,-50%) scale(.4) rotate(-12deg);}
-  35%{opacity:1;transform:translate(-50%,-50%) scale(1.45) rotate(10deg);}
-  100%{opacity:.92;transform:translate(-50%,-50%) scale(1) rotate(0deg);}
+@keyframes softCleanGlow{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.55);}
+  35%{opacity:.45;transform:translate(-50%,-50%) scale(1.08);}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(1.26);}
 }
 
-/* 歯ブラシ本体は動かさず、周りの線と泡だけで「磨いてる風」にする */
-.brush-motion{opacity:0;transition:opacity .25s ease;}
+/* 歯ブラシ本体は動かさない。磨いている雰囲気は薄いリズム線だけ */
+.brush-motion{opacity:0;transition:opacity .28s ease;}
 body.is-brushing .brush-motion{opacity:1;}
 .brush-line{
   position:absolute;
-  left:73%;
-  top:44%;
-  width:5.4%;
-  height:1.4%;
+  left:72.4%;
+  width:3.2%;
+  height:.42%;
   border-radius:999px;
-  background:rgba(255,255,255,.88);
-  box-shadow:0 0 10px rgba(255,255,255,.85);
+  background:rgba(255,255,255,.42);
+  box-shadow:0 0 4px rgba(255,255,255,.28);
   transform-origin:left center;
-  animation:brushLine 1s ease-in-out infinite;
+  animation:brushLineComfort 1.35s ease-in-out infinite;
 }
-.bl1{transform:rotate(-12deg);animation-delay:0s;}
-.bl2{top:48%;left:72%;transform:rotate(0deg);animation-delay:.18s;}
-.bl3{top:52%;left:71%;transform:rotate(12deg);animation-delay:.36s;}
-.brush-bubble{
-  position:absolute;
-  width:2.2%;
-  aspect-ratio:1/1;
-  border-radius:50%;
-  background:rgba(255,255,255,.75);
-  box-shadow:0 0 9px rgba(255,255,255,.9);
-  animation:brushBubble 1.8s ease-in-out infinite;
-}
-.bb1{left:66%;top:47%;animation-delay:0s;}
-.bb2{left:69%;top:42%;animation-delay:.45s;}
-.bb3{left:64%;top:52%;animation-delay:.9s;}
-
-@keyframes brushLine{
-  0%,100%{opacity:.25;translate:0 0;scale:.75 1;}
-  45%{opacity:1;translate:-1.3% 0;scale:1.12 1;}
-}
-@keyframes brushBubble{
-  0%{opacity:0;transform:translate(0,0) scale(.4);}
-  35%{opacity:.9;}
-  100%{opacity:0;transform:translate(-24px,-18px) scale(1.25);}
+.bl1{top:43.7%;transform:rotate(-8deg);animation-delay:0s;}
+.bl2{top:47.0%;left:71.9%;transform:rotate(0deg);animation-delay:.23s;}
+.bl3{top:50.3%;left:71.5%;transform:rotate(8deg);animation-delay:.46s;}
+@keyframes brushLineComfort{
+  0%,100%{opacity:.12;translate:0 0;scale:.72 1;}
+  50%{opacity:.48;translate:-.28% 0;scale:1 1;}
 }

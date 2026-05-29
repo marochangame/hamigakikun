@@ -1,36 +1,37 @@
-// 追加演出だけ。既存 app-v11.js は変更しない。
+// 心地よさ重視の自動バイ菌消し。既存 app-v11.js は変更しない。
 (() => {
   const song = document.getElementById('song');
   const covers = Array.from(document.querySelectorAll('.germ-cover'));
   if (!song || covers.length === 0) return;
 
-  let timer = null;
-  let cleaned = 0;
+  let timers = [];
+
+  const clearTimers = () => {
+    timers.forEach(t => clearTimeout(t));
+    timers = [];
+  };
 
   const resetGerms = () => {
-    cleaned = 0;
+    clearTimers();
     covers.forEach(c => c.classList.remove('is-cleaned'));
   };
 
-  const cleanNext = () => {
-    if (cleaned >= covers.length) return;
-    covers[cleaned].classList.add('is-cleaned');
-    cleaned += 1;
-  };
-
   const startAutoClean = () => {
-    clearInterval(timer);
     resetGerms();
     document.body.classList.add('is-brushing');
 
-    // すぐ1匹、その後は音声に合わせて少しずつ消す。
-    setTimeout(cleanNext, 1200);
-    timer = setInterval(cleanNext, 9000);
+    // 歯みがき音声を見ながら、急がず気持ちよく1匹ずつ減るテンポ。
+    // 5匹を約70秒で消して、最後は余韻を残す。
+    const schedule = [4500, 18500, 32500, 48500, 66500];
+    schedule.forEach((ms, index) => {
+      timers.push(setTimeout(() => {
+        covers[index]?.classList.add('is-cleaned');
+      }, ms));
+    });
   };
 
   const stopMotionOnly = () => {
-    clearInterval(timer);
-    timer = null;
+    clearTimers();
     document.body.classList.remove('is-brushing');
   };
 
@@ -38,10 +39,5 @@
   song.addEventListener('ended', stopMotionOnly);
   song.addEventListener('pause', () => {
     if (!song.ended) stopMotionOnly();
-  });
-
-  // 念のため、既存JSが音声を巻き戻して再生するタイプでも毎回リセットされるようにする。
-  song.addEventListener('seeking', () => {
-    if (song.currentTime < 0.5) resetGerms();
   });
 })();
