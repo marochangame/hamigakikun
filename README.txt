@@ -1,10 +1,24 @@
-はみがき90びょう v11
+はみがきくん 画像だけ差し替え用ZIP
 
-変更点：
-- シュッシュの吹き出し文字を非表示
-- 小さいスタートボタンを追加
-- バイ菌を順番に目立たなくして消える演出
-- 大きな発光物体を廃止し、小さいキラキラだけ追加
-- 完了後「もう一回する？」画面を維持
+変更内容：
+- kawaii_ui.jpg だけを新しい画像に差し替え
 
-GitHubにはこのフォルダ内のファイルを全部アップロードしてください。
+絶対に触っていないもの：
+- index.html
+- style-v11.css
+- app-v11.js
+- hamigaki_song.m4a
+- manifest.webmanifest
+- アイコン類
+
+GitHubでやること：
+1. hamigakikun リポジトリを開く
+2. このZIPの中の kawaii_ui.jpg だけをアップロード
+3. 既存の kawaii_ui.jpg を上書き
+4. Commit changes
+5. 反映確認URL：
+   https://marochangame.github.io/hamigakikun/index.html?v=image-only-1
+
+注意：
+今回の目的は「画像だけ変更」です。
+コードファイルはアップロードしないでください。
