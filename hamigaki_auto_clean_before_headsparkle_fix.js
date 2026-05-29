@@ -26,9 +26,9 @@
     document.body.classList.add('is-brushing');
 
     // 4匹想定：20秒、40秒、60秒、80秒。
-    // 妖精さんの頭に被っていた左奥補助パッチ(g5)は出さない。
+    // g5 は左奥の補助パッチなので、1匹目と同時に出して半端残りを防ぐ。
     const schedule = [
-      { ms: 20000, indexes: [0] },
+      { ms: 20000, indexes: [0, 4] },
       { ms: 40000, indexes: [1] },
       { ms: 60000, indexes: [2] },
       { ms: 80000, indexes: [3] }
